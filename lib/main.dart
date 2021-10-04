@@ -60,15 +60,6 @@ class _BmiCalculatorState extends State<BmiCalculator> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    radioButton("Man", Colors.blue, 0),
-                    radioButton("Woman", Colors.pink, 1),
-                  ],
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
                 Text(
                   "Your Height in Cm : ",
                   style: TextStyle(
@@ -117,6 +108,15 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                       borderSide: BorderSide.none,
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Row(
+                  children: [
+                    radioButton("Man", Colors.blue, 0),
+                    radioButton("Woman", Colors.pink, 1),
+                  ],
                 ),
                 SizedBox(
                   height: 20.0,
