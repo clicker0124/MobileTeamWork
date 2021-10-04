@@ -11,105 +11,203 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: BmiCalculator(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class BmiCalculator extends StatefulWidget {
+  const BmiCalculator({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _BmiCalculatorState createState() => _BmiCalculatorState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _BmiCalculatorState extends State<BmiCalculator> {
+  int currentindex = 0;
+  String? result;
+  double? height;
+  double? weight;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  TextEditingController heightController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+    return Container(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "BMIT Calculator ",
+            style: TextStyle(color: Colors.black),
+          ),
+          elevation: 0.0,
+          backgroundColor: Color(0xfffafafa),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.settings,
+                color: Colors.black,
+              ),
+            )
           ],
         ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    radioButton("Man", Colors.blue, 0),
+                    radioButton("Woman", Colors.pink, 1),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  "Your Height in Cm : ",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                  ),
+                ),
+                SizedBox(
+                  height: 8.0,
+                ),
+                TextField(
+                  keyboardType: TextInputType.number,
+                  controller: heightController,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    hintText: "Your height in Cm",
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  "Your Weight in Kg : ",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                  ),
+                ),
+                SizedBox(
+                  height: 8.0,
+                ),
+                TextField(
+                  keyboardType: TextInputType.number,
+                  controller: weightController,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    hintText: "Your weight in Kg",
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 50.0,
+                  child: FlatButton(
+                    onPressed: () {
+                      double height = double.parse(heightController.value.text);
+                      double weight = double.parse(weightController.value.text);
+                      calculateBmi(height, weight);
+                    },
+                    color: Colors.blue,
+                    child: Text("Calculate",
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Container(
+                  width: double.infinity,
+                  child: Text(
+                    "Your BMI is: ",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 50.0,
+                ),
+                Container(
+                  width: double.infinity,
+                  child: Text(
+                    "$result",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  void calculateBmi(double height, double weight) {
+    double finalresult = weight / (height * height / 10000);
+    String bmi = finalresult.toStringAsFixed(2);
+    setState(() {
+      result = bmi;
+    });
+  }
+
+  void changeIndex(int index) {
+    setState(() {
+      currentindex = index;
+    });
+  }
+
+  Widget radioButton(String value, Color color, int index) {
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 12.0),
+        height: 80,
+        child: FlatButton(
+          color: currentindex == index ? color : Colors.grey[200],
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+          onPressed: () {
+            changeIndex(index);
+          },
+          child: Text(
+            value,
+            style: TextStyle(
+              color: currentindex == index ? Colors.white : color,
+              fontSize: 20,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
