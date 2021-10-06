@@ -38,7 +38,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "BMIT Calculator ",
+            "БЖИ Тооцоологч ",
             style: TextStyle(color: Colors.black),
           ),
           elevation: 0.0,
@@ -61,7 +61,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Your Height in Cm : ",
+                  "Таны өндөр см : ",
                   style: TextStyle(
                     fontSize: 18.0,
                   ),
@@ -74,7 +74,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                   controller: heightController,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    hintText: "Your height in Cm",
+                    hintText: "Өндөр",
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
@@ -87,7 +87,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                   height: 20.0,
                 ),
                 Text(
-                  "Your Weight in Kg : ",
+                  "Таны жин кг : ",
                   style: TextStyle(
                     fontSize: 18.0,
                   ),
@@ -100,7 +100,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                   controller: weightController,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    hintText: "Your weight in Kg",
+                    hintText: "Жин",
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: OutlineInputBorder(
@@ -114,8 +114,8 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                 ),
                 Row(
                   children: [
-                    radioButton("Man", Colors.blue, 0),
-                    radioButton("Woman", Colors.pink, 1),
+                    radioButton("Эр", Colors.blue, 0),
+                    radioButton("Эм", Colors.pink, 1),
                   ],
                 ),
                 SizedBox(
@@ -131,7 +131,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                       calculateBmi(height, weight);
                     },
                     color: Colors.blue,
-                    child: Text("Calculate",
+                    child: Text("Тооцоолох",
                         style: TextStyle(
                           color: Colors.white,
                         )),
@@ -143,7 +143,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                 Container(
                   width: double.infinity,
                   child: Text(
-                    "Your BMI is: ",
+                    "Таны БЖИ бол : ",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 24.0,
@@ -152,7 +152,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                   ),
                 ),
                 SizedBox(
-                  height: 50.0,
+                  height: 20.0,
                 ),
                 Container(
                   width: double.infinity,
@@ -163,6 +163,49 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  "Тураалтай = <18.5",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue,
+                  ),
+                ),
+                Text(
+                  "Ердийн жинтэй байна = 18.5–24.9",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green,
+                  ),
+                ),
+                Text(
+                  "Илүүдэл жинтэй байна = 25–29.9",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xfffdd835),
+                  ),
+                ),
+                Text(
+                  "Таргалалтын 1р зэрэг = BMI of 30-35",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.orange,
+                  ),
+                ),
+                Text(
+                  "Таргалалтын 2р зэрэг 35 or greater",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
                   ),
                 ),
               ],
